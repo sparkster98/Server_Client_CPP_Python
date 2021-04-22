@@ -8,7 +8,7 @@ int main()
 {
     // Initialize winsock
     WSADATA wsData;
-    WORD ver = MAKEWORD(2, 2);
+    WORD ver = MAKEWORD(2, 2); // Version 2.2
 
     int wsOK = WSAStartup(ver, &wsData);
     if (wsOK != 0) {
@@ -43,7 +43,7 @@ int main()
     char host[NI_MAXHOST];      // Clients remote name
     char service[NI_MAXSERV];   // Service (i.e. port) the client is connected on
 
-    ZeroMemory(host, NI_MAXHOST);
+    ZeroMemory(host, NI_MAXHOST); // Fill char array with zeros 
     ZeroMemory(service, NI_MAXSERV);
 
     // Get the name of the client if possible
@@ -71,7 +71,7 @@ int main()
             break;
         }
 
-        string message  = buf;
+        string message = buf;
 
         // If the client sends a 1, do option 1, else just print message and return message
         if (buf[0] == '1') {
