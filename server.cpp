@@ -2,8 +2,6 @@
 #include <WS2tcpip.h>
 #include <string>
 
-//#pragma comment (lib, "ws2_32.lib")
-
 using namespace std;
 
 int main()
@@ -48,6 +46,7 @@ int main()
     ZeroMemory(host, NI_MAXHOST);
     ZeroMemory(service, NI_MAXSERV);
 
+    // Get the name of the client if possible
     if (getnameinfo((sockaddr*)&client, sizeof(client), host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0) {
         cout << host << " connected on port " << service << endl;
     }
@@ -72,9 +71,9 @@ int main()
             break;
         }
 
-        // Print recieved message
         string message  = buf;
 
+        // If the client sends a 1, do option 1, else just print message and return message
         if (buf[0] == '1') {
             cout << "You have sent a 1" << endl;
             string returnMessage = "Option 1 selected";
